@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Main {
+public class ProbarTempUnitsConverter {
     public static void main(String[] args) {
         String units = "";
         double temp = 0;
@@ -34,7 +34,6 @@ public class Main {
         } else {
             System.out.println("Seleccione una de las opciones de la lista...");
             System.out.println("Programa finalizado");
-
         }
     }
 }
