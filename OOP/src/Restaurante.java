@@ -20,7 +20,7 @@ public class Restaurante {
         double platesBasedOnEggs, platesBasedOnSausage;
         platesBasedOnEggs = eggs / 2;
         platesBasedOnSausage = sausage / 200;
-        if (platesBasedOnEggs <= platesBasedOnSausage) {
+        if (platesBasedOnEggs < platesBasedOnSausage) {
             return platesBasedOnEggs;
         } else {
             return platesBasedOnSausage;
@@ -28,6 +28,15 @@ public class Restaurante {
     }
 
     public void plateServe(){
+        eggs -= 2;
+        sausage -= 200;
+    }
 
+    public int getEggs() {
+        return eggs;
+    }
+
+    public double getSausage() {
+        return sausage;
     }
 }
