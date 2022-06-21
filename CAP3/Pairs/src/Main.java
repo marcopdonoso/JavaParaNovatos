@@ -24,6 +24,10 @@ public class Main {
         }
 
         Pairs pairs = new Pairs(a,b);
+        System.out.println("Pares");
         pairs.pairs();
+        System.out.println("\nImpares");
+        pairs.odds();
+
     }
 }
