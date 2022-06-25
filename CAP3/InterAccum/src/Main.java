@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) {
         int number = 0;
-        
+
         InterAcc interAcc = new InterAcc();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
