@@ -18,7 +18,7 @@ public class Main {
             System.out.print("Seleccione la operacion a realizar (+  -  *  /): ");
             op = calculator.readOp();
             System.out.println(a + " " + op + " " + b + " = " + calculator.calc(a, b, op));
-            System.out.print("Desea continuar? (Y/N): ");
+            System.out.print("Desea continuar? (N para salir, cualquier tecla para continuar): ");
 
         } while (!Objects.equals(sc.next(), "N"));
     }
