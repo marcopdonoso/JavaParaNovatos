@@ -18,20 +18,11 @@
     public int ageCalc() {
         int ageInYears;
         ageInYears = currentYear - birthYear;
-        if (currentMonth > birthMonth) {
-           return ageInYears;
-        } else if (currentMonth < birthMonth) {
+        if (currentMonth < birthMonth) {
             ageInYears--;
-            return ageInYears;
-        } else {
-            if (currentDay > birthDay) {
-                return ageInYears;
-            } else if (currentDay < birthDay) {
-                ageInYears--;
-                return ageInYears;
-            } else {
-                return ageInYears;
-            }
+        } else if (currentMonth == birthMonth && currentDay < birthDay) {
+            ageInYears--;
         }
+        return ageInYears;
     }
 }
