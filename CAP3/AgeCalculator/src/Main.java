@@ -28,6 +28,10 @@ public class Main {
         birthDay = scanner.nextInt();
 
         System.out.println("Edad en años: " + ageCalculator.yearsCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
-        System.out.println("Edad en meses: " + ageCalculator.monthCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
+        System.out.println("Edad en meses: " + ageCalculator.monthsCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
+        System.out.println("Edad en días: " + ageCalculator.daysCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
+        System.out.println("Edad en horas: " + ageCalculator.hoursCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
+        System.out.println("Edad en minutos: " + ageCalculator.minutesCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
+        System.out.println("Edad en segundos: " + ageCalculator.secondsCalc(birthYear,currYear,birthMonth,currMonth,birthDay,currDay));
     }
 }
