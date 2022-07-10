@@ -9,6 +9,13 @@ public class Animal {
         animalsCounter++;
     }
 
+    // Constructor copia
+    public Animal (Animal animal) {
+        this.name = animal.getName();
+        this.age = animal.getAge();
+        animalsCounter++;
+    }
+
     public Animal clone () {
         return new Animal(this.name, this.age);
     }
