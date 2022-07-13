@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GiantArray {
     public static int[] generateArray(int size) {
         int[] array = new int[size];
@@ -7,13 +9,27 @@ public class GiantArray {
         return array;
     }
 
+    public static ArrayList<Integer> generateArrayList(int size) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            arrayList.add((int) (Math.random() * 2000000));
+        }
+        return arrayList;
+    }
+
     public static void printArray(int[] array) {
         for (int i : array) {
             System.out.println(i);
         }
     }
 
-    public static int[] orderArray(int [] array) {
+    public static void printArray(ArrayList<Integer> arrayList) {
+        for (int i : arrayList) {
+            System.out.println(i);
+        }
+    }
+
+    public static void orderArray(int [] array) {
         int elem;
         for (int i = 1; i < array.length; i++) {
             for (int j = array.length - 1; j >= i ; j--) {
@@ -24,7 +40,19 @@ public class GiantArray {
                 }
             }
         }
-        return array;
+    }
+
+    public static void orderArrayList(ArrayList<Integer> arrayList) {
+        int elem;
+        for (int i = 1; i < arrayList.size(); i++) {
+            for (int j = arrayList.size() - 1; j >= i ; j--) {
+                if (arrayList.get(j - 1) > arrayList.get(j)) {
+                    elem = arrayList.get(j - 1);
+                    arrayList.set(j - 1,arrayList.get(j));
+                    arrayList.set(j,elem);
+                }
+            }
+        }
     }
 
     public static int searchNumber(int[] array, int number) {
@@ -37,5 +65,9 @@ public class GiantArray {
             i++;
         }
         return flag;
+    }
+
+    public static int searchNumberInArrayList(ArrayList<Integer> arrayList, int number) {
+        return arrayList.indexOf(number);
     }
 }
