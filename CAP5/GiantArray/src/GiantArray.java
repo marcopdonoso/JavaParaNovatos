@@ -19,13 +19,13 @@ public class GiantArray {
 
     public static void printArray(int[] array) {
         for (int i : array) {
-            System.out.println(i);
+            System.out.print(i + " ");
         }
     }
 
     public static void printArray(ArrayList<Integer> arrayList) {
         for (int i : arrayList) {
-            System.out.println(i);
+            System.out.print(i + " ");
         }
     }
 
