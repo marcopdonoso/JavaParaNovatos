@@ -12,6 +12,76 @@ public class ChristmasDance {
 
     public static void main(String[] args) {
         createStudentsList();
+        Student[][] couplesList = randomCouples();
+        showCouplesList(couplesList);
+    }
+
+    public static void showCouplesList(Student[][] couplesList) {
+        for (int i = 0; i < COUPLES_NUMBER; i++) {
+            System.out.printf("Pareja %2d: ", i + 1);
+            System.out.printf("%s (%s) (%c) - %s (%s) (%c)\n", couplesList[i][0].getName(),couplesList[i][0].getSchool(),couplesList[i][0].getGender(),couplesList[i][1].getName(),couplesList[i][1].getSchool(),couplesList[i][1].getGender());
+        }
+    }
+
+    public static Student[][] randomCouples() {
+        Student[][] couplesList = new Student[COUPLES_NUMBER][2];
+        String school = "Hogwarts";
+        char gender = 'M';
+        int j = 0;
+        for (int i = 0; i < COUPLES_NUMBER; i++) {
+            couplesList[i][j] = selectStudent(school, gender);
+            if (school.equals("Hogwarts")) {
+                school = "Beauxbatons";
+            } else if (school.equals("Beauxbatons")) {
+                school = "Durmstrang";
+            } else {
+                school = "Hogwarts";
+            }
+            if (gender == 'M') {
+                gender = 'F';
+                j = 1;
+                i--;
+            } else {
+                gender = 'M';
+                j = 0;
+            }
+        }
+        return couplesList;
+    }
+
+    public static Student selectStudent(String school, char gender) {
+        int n;
+        boolean valid;
+        Student student = null;
+        do {
+            valid = true;
+            n = (int) (Math.random() * STUDENTS_NUMBER);
+            if (school.equals("Hogwarts")) {
+                if (hogwarts[n].getGender() != gender || selectedHogwarts[n] == 1){
+                    valid = false;
+                } else {
+                    student = hogwarts[n];
+                    selectedHogwarts[n] = 1;
+                }
+            }
+            if (school.equals("Beauxbatons")) {
+                if (beauxbatons[n].getGender() != gender || selectedBeauxbatons[n] == 1){
+                    valid = false;
+                } else {
+                    student = beauxbatons[n];
+                    selectedBeauxbatons[n] = 1;
+                }
+            }
+            if (school.equals("Durmstrang")) {
+                if (durmstrang[n].getGender() != gender || selectedDurmstrang[n] == 1){
+                    valid = false;
+                } else {
+                    student = durmstrang[n];
+                    selectedDurmstrang[n] = 1;
+                }
+            }
+        } while (!valid);
+        return student;
     }
 
     public static void createStudentsList() {
@@ -47,50 +117,50 @@ public class ChristmasDance {
         hogwarts[19] = new Student("Cho Chang",'F',"Hogwarts");
 
         // Beauxbatons
-        hogwarts[20] = new Student("Damien Bordeau", 'M', "Beauxbatons");
-        hogwarts[21] = new Student("Didier Girardon", 'M', "Beauxbatons");
-        hogwarts[22] = new Student("Edouard Pinaud", 'M', "Beauxbatons");
-        hogwarts[23] = new Student("Fabien Rouseau", 'M', "Beauxbatons");
-        hogwarts[24] = new Student("François Eluchans", 'M', "Beauxbatons");
-        hogwarts[25] = new Student("Gabriel Lombard", 'M', "Beauxbatons");
-        hogwarts[26] = new Student("Gaston Abbadie", 'M', "Beauxbatons");
-        hogwarts[27] = new Student("Adolph Barraud", 'M', "Beauxbatons");
-        hogwarts[28] = new Student("Bastian Briand", 'M', "Beauxbatons");
-        hogwarts[29] = new Student("Colin Camus", 'M', "Beauxbatons");
+        beauxbatons[0] = new Student("Damien Bordeau", 'M', "Beauxbatons");
+        beauxbatons[1] = new Student("Didier Girardon", 'M', "Beauxbatons");
+        beauxbatons[2] = new Student("Edouard Pinaud", 'M', "Beauxbatons");
+        beauxbatons[3] = new Student("Fabien Rouseau", 'M', "Beauxbatons");
+        beauxbatons[4] = new Student("François Eluchans", 'M', "Beauxbatons");
+        beauxbatons[5] = new Student("Gabriel Lombard", 'M', "Beauxbatons");
+        beauxbatons[6] = new Student("Gaston Abbadie", 'M', "Beauxbatons");
+        beauxbatons[7] = new Student("Adolph Barraud", 'M', "Beauxbatons");
+        beauxbatons[8] = new Student("Bastian Briand", 'M', "Beauxbatons");
+        beauxbatons[9] = new Student("Colin Camus", 'M', "Beauxbatons");
 
-        hogwarts[30] = new Student("Fleur Delacour",'F',"Beauxbatons");
-        hogwarts[31] = new Student("Catherine Leduc",'F',"Beauxbatons");
-        hogwarts[32] = new Student("Audrey Vien",'F',"Beauxbatons");
-        hogwarts[33] = new Student("Bérénice Dugès",'F',"Beauxbatons");
-        hogwarts[34] = new Student("Laure Champollion",'F',"Beauxbatons");
-        hogwarts[35] = new Student("Léonore Chifflet",'F',"Beauxbatons");
-        hogwarts[36] = new Student("Lucette Toussaint",'F',"Beauxbatons");
-        hogwarts[37] = new Student("Magadlène Lemond",'F',"Beauxbatons");
-        hogwarts[38] = new Student("Nélie Levallois",'F',"Beauxbatons");
-        hogwarts[39] = new Student("Nicole Fontaine",'F',"Beauxbatons");
+        beauxbatons[10] = new Student("Fleur Delacour",'F',"Beauxbatons");
+        beauxbatons[11] = new Student("Catherine Leduc",'F',"Beauxbatons");
+        beauxbatons[12] = new Student("Audrey Vien",'F',"Beauxbatons");
+        beauxbatons[13] = new Student("Bérénice Dugès",'F',"Beauxbatons");
+        beauxbatons[14] = new Student("Laure Champollion",'F',"Beauxbatons");
+        beauxbatons[15] = new Student("Léonore Chifflet",'F',"Beauxbatons");
+        beauxbatons[16] = new Student("Lucette Toussaint",'F',"Beauxbatons");
+        beauxbatons[17] = new Student("Magadlène Lemond",'F',"Beauxbatons");
+        beauxbatons[18] = new Student("Nélie Levallois",'F',"Beauxbatons");
+        beauxbatons[19] = new Student("Nicole Fontaine",'F',"Beauxbatons");
 
         // Durmstrang
-        hogwarts[40] = new Student("Viktor Krum", 'M', "Durmstrang");
-        hogwarts[41] = new Student("Andrei Voyanov", 'M', "Durmstrang");
-        hogwarts[42] = new Student("Anton Chilikov", 'M', "Durmstrang");
-        hogwarts[43] = new Student("Boris Andreev", 'M', "Durmstrang");
-        hogwarts[44] = new Student("Damyan Mihov", 'M', "Durmstrang");
-        hogwarts[45] = new Student("Dragomir Nikolaev", 'M', "Durmstrang");
-        hogwarts[46] = new Student("Emil Petrov", 'M', "Durmstrang");
-        hogwarts[47] = new Student("Georgi Maksimov", 'M', "Durmstrang");
-        hogwarts[48] = new Student("Milen Ivov", 'M', "Durmstrang");
-        hogwarts[49] = new Student("Pavel Kaloyanchev", 'M', "Durmstrang");
+        durmstrang[0] = new Student("Viktor Krum", 'M', "Durmstrang");
+        durmstrang[1] = new Student("Andrei Voyanov", 'M', "Durmstrang");
+        durmstrang[2] = new Student("Anton Chilikov", 'M', "Durmstrang");
+        durmstrang[3] = new Student("Boris Andreev", 'M', "Durmstrang");
+        durmstrang[4] = new Student("Damyan Mihov", 'M', "Durmstrang");
+        durmstrang[5] = new Student("Dragomir Nikolaev", 'M', "Durmstrang");
+        durmstrang[6] = new Student("Emil Petrov", 'M', "Durmstrang");
+        durmstrang[7] = new Student("Georgi Maksimov", 'M', "Durmstrang");
+        durmstrang[8] = new Student("Milen Ivov", 'M', "Durmstrang");
+        durmstrang[9] = new Student("Pavel Kaloyanchev", 'M', "Durmstrang");
 
-        hogwarts[50] = new Student("Anka Lazarov",'F',"Durmstrang");
-        hogwarts[51] = new Student("Dana Marinov",'F',"Durmstrang");
-        hogwarts[52] = new Student("Donka Minkov",'F',"Durmstrang");
-        hogwarts[53] = new Student("Emiliya Hristov",'F',"Durmstrang");
-        hogwarts[54] = new Student("Irina Vanev",'F',"Durmstrang");
-        hogwarts[55] = new Student("Ivana Viktorov",'F',"Durmstrang");
-        hogwarts[56] = new Student("Katerina Vasilev",'F',"Durmstrang");
-        hogwarts[57] = new Student("Nevelka Popov",'F',"Durmstrang");
-        hogwarts[58] = new Student("Nikol Zahariev",'F',"Durmstrang");
-        hogwarts[59] = new Student("Olga Vodenicharov",'F',"Durmstrang");
+        durmstrang[10] = new Student("Anka Lazarov",'F',"Durmstrang");
+        durmstrang[11] = new Student("Dana Marinov",'F',"Durmstrang");
+        durmstrang[12] = new Student("Donka Minkov",'F',"Durmstrang");
+        durmstrang[13] = new Student("Emiliya Hristov",'F',"Durmstrang");
+        durmstrang[14] = new Student("Irina Vanev",'F',"Durmstrang");
+        durmstrang[15] = new Student("Ivana Viktorov",'F',"Durmstrang");
+        durmstrang[16] = new Student("Katerina Vasilev",'F',"Durmstrang");
+        durmstrang[17] = new Student("Nevelka Popov",'F',"Durmstrang");
+        durmstrang[18] = new Student("Nikol Zahariev",'F',"Durmstrang");
+        durmstrang[19] = new Student("Olga Vodenicharov",'F',"Durmstrang");
 
         for (int i = 0; i < STUDENTS_NUMBER; i++) {
             selectedHogwarts[i] = 0;
@@ -100,5 +170,5 @@ public class ChristmasDance {
 
     }
 
-    
+
 }
