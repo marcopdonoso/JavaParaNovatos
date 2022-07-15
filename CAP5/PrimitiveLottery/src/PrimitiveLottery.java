@@ -17,7 +17,7 @@ public class PrimitiveLottery {
         }
 
         for (Integer integer : arrayList) {
-            System.out.print(integer + " ");
+            System.out.printf("%3d",integer);
         }
     }
 }
