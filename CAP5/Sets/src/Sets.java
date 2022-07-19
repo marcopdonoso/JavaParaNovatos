@@ -1,6 +1,9 @@
+import java.util.Scanner;
+
 public abstract class Sets {
-    public abstract void insertElement(Character c);
-    public abstract void eraseElement(Character c);
+    protected Scanner scanner = new Scanner(System.in);
+    public abstract void insertElement();
+    public abstract void eraseElement();
     public abstract void emptySet();
     public abstract boolean is();
 }
