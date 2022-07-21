@@ -7,11 +7,4 @@ public class UI {
         System.out.println();
         System.out.print("SELECCIONE UNA OPCION: ");
     }
-
-    public void secMenu() {
-        System.out.println("1. VOLVER A MENU PRINCIPAL");
-        System.out.println("2. SALIR");
-        System.out.println();
-        System.out.print("SELECCIONE UNA OPCION: ");
-    }
 }
