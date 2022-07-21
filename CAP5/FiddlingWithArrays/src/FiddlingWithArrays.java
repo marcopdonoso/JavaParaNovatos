@@ -39,6 +39,9 @@ public class FiddlingWithArrays {
             rightDown--;
             leftUp++;
         } while ((rightDown - leftUp) > 0);
+        if(array2d.length % 2 != 0) {
+            elementCollector.add(array2d[(array2d.length - 1) / 2][(array2d.length - 1) / 2]);
+        }
         return elementCollector;
     }
 
