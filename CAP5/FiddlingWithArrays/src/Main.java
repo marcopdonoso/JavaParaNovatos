@@ -23,6 +23,9 @@ public class Main {
                 case 2:
                     System.out.println(fiddlingWithArrays.perimeter(0,N,0,N));
                     break;
+                case 3:
+                    System.out.println(fiddlingWithArrays.spiral());
+                    break;
                 case 4:
                     System.out.println("HASTA LA VISTA");
                     break;

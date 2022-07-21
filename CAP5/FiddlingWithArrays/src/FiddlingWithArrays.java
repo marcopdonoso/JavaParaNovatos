@@ -30,6 +30,18 @@ public class FiddlingWithArrays {
         return elementCollector;
     }
 
+    public ArrayList<Integer> spiral() {
+        ArrayList<Integer> elementCollector = new ArrayList<>();
+        int rightDown = array2d.length;
+        int leftUp = 0;
+        do {
+            elementCollector.addAll(perimeter(leftUp,rightDown,leftUp,rightDown));
+            rightDown--;
+            leftUp++;
+        } while ((rightDown - leftUp) > 0);
+        return elementCollector;
+    }
+
     public void getArray2d() {
         printArray2d(array2d);
     }
