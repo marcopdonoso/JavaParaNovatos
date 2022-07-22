@@ -18,5 +18,8 @@ public class Main {
         System.out.println();
         System.out.println("Contando vocales:");
         playingWithStrings.countingVocals();
+        System.out.println();
+        System.out.println("Es un Palindromo?");
+        System.out.println(playingWithStrings.palindrome());
     }
 }

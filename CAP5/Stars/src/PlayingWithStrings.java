@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PlayingWithStrings {
@@ -60,5 +60,19 @@ public class PlayingWithStrings {
             }
         }
         System.out.println("A = " + a + ", E = " + e + ", I = " + i + ", O = " + o + ", U = " + u);
+    }
+
+    public boolean palindrome() {
+        String string2 = string;
+        string2 = string2.replaceAll(" ","");
+        String string3 = string2;
+        StringBuilder stringBuilder = new StringBuilder(string3);
+        stringBuilder.reverse();
+        string3 = stringBuilder.toString();
+
+        string2 = string2.toLowerCase();
+        string3 = string3.toLowerCase();
+
+        return string2.equals(string3);
     }
 }
