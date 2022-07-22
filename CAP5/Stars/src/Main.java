@@ -6,5 +6,15 @@ public class Main {
         for (char anChar : playingWithStrings.vocalsToStars()) {
             System.out.print(anChar);
         }
+        System.out.println();
+        System.out.println();
+        System.out.println("Invertido");
+        System.out.println(playingWithStrings.invertString());
+        System.out.println();
+        System.out.println("Esta ordenado alfabeticamente?");
+        System.out.println(playingWithStrings.alphabetic());
+        System.out.println();
+        System.out.println("Contado vocales:");
+        playingWithStrings.countingVocals();
     }
 }
