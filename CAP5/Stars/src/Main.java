@@ -3,6 +3,8 @@ public class Main {
         PlayingWithStrings playingWithStrings = new PlayingWithStrings();
         System.out.print("Introduce una cadena: ");
         playingWithStrings.readString();
+        System.out.println();
+        System.out.println("Vocales por *");
         for (char anChar : playingWithStrings.vocalsToStars()) {
             System.out.print(anChar);
         }
@@ -14,7 +16,7 @@ public class Main {
         System.out.println("Esta ordenado alfabeticamente?");
         System.out.println(playingWithStrings.alphabetic());
         System.out.println();
-        System.out.println("Contado vocales:");
+        System.out.println("Contando vocales:");
         playingWithStrings.countingVocals();
     }
 }
