@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
-        Stars stars = new Stars();
+        PlayingWithStrings playingWithStrings = new PlayingWithStrings();
         System.out.print("Introduce una cadena: ");
-        stars.readString();
-        for (char anChar : stars.vocalsToStars()) {
+        playingWithStrings.readString();
+        for (char anChar : playingWithStrings.vocalsToStars()) {
             System.out.print(anChar);
         }
     }

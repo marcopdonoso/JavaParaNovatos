@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Stars {
+public class PlayingWithStrings {
     private String string;
 
     public void readString() {
@@ -19,5 +19,7 @@ public class Stars {
         }
         return charString;
     }
+
+
 
 }
