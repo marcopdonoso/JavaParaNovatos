@@ -52,7 +52,7 @@ public class WordSearchGenerator {
             position = (int) (Math.random() * 2);
             direction = random.nextBoolean();
             initialBox = setInitialBox(position,word.length());
-            
+
         }
     }
 
@@ -102,8 +102,10 @@ public class WordSearchGenerator {
         return initialBox;
     }
 
-    public void horizontal(String wordString, int row, int column, boolean direction) {
+    public void horizontal(String wordString, int[] initialBox, boolean direction) {
         char[] wordChar = wordString.toCharArray();
+        int row = initialBox[0];
+        int column = initialBox[1];
         int j = 0;
         int k = wordChar.length - 1;
         if (!direction) {
@@ -119,8 +121,10 @@ public class WordSearchGenerator {
         }
     }
 
-    public void vertical(String wordString, int row, int column, boolean direction) {
+    public void vertical(String wordString, int[] initialBox, boolean direction) {
         char[] wordChar = wordString.toCharArray();
+        int row = initialBox[0];
+        int column = initialBox[1];
         int j = 0;
         int k = wordChar.length - 1;
         if (!direction) {
