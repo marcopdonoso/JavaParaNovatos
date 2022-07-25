@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,6 +8,7 @@ public class WordSearchGenerator {
     private char[][] wordSearchMatrix;
     private boolean[][] availabilityMatrix;
     private char[][] solutionMatrix;
+    private ArrayList<String> selectedWords;
 
     public WordSearchGenerator() {
         wordsList = new String[20];
@@ -41,6 +43,7 @@ public class WordSearchGenerator {
         boolean direction;
         int[] initialBox;
         char[] wordChar;
+        selectedWords = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
@@ -61,9 +64,9 @@ public class WordSearchGenerator {
 
             do {
                 word = selectWord();
-            } while (word.length() >= size);
+            } while (word.length() > size);
 
-            position = (int) (Math.random() * 2);
+            position = (int) (Math.round(Math.random() * 2));
             direction = random.nextBoolean();
 
             if (direction) {
@@ -71,10 +74,11 @@ public class WordSearchGenerator {
             }
 
             wordChar = word.toCharArray();
-            initialBox = setInitialBox(position,word.length());
+            initialBox = setInitialBox(position,wordChar.length);
 
             if (checkAvailability(wordChar,initialBox,position)) {
-                System.out.println(word);
+                System.out.println(word + " - " + position + " " + Arrays.toString(initialBox));
+                selectedWords.add(word);
                 switch (position) {
                     case 0:
                         horizontal(wordChar, initialBox);
@@ -92,6 +96,7 @@ public class WordSearchGenerator {
         }
         showMatrix(wordSearchMatrix);
 
+        System.out.println();
         for (boolean[] booleans : availabilityMatrix) {
             for (boolean anBoolean : booleans) {
                 if (anBoolean) {
@@ -114,14 +119,19 @@ public class WordSearchGenerator {
         }
         for (int i = 0; i < randomMatrix.length; i++) {
             for (int j = 0; j < randomMatrix[i].length; j++) {
-                randomMatrix[i][j] = (char) (Math.random() * 25 + 65);
+                randomMatrix[i][j] = (char) (Math.round(Math.random() * 25) + 65);
             }
         }
         return randomMatrix;
     }
 
     public String selectWord() {
-        return wordsList[(int) (Math.random() * 19)];
+        String selectedWord;
+        do {
+            selectedWord = wordsList[(int) (Math.round(Math.random() * 19))];
+        } while (selectedWords.contains(selectedWord));
+
+        return selectedWord;
     }
 
     public String reverseWord(String word) {
@@ -129,30 +139,26 @@ public class WordSearchGenerator {
         return stringBuilder.reverse().toString();
     }
 
-    public int[] setInitialBox(int position, int size) {
+    public int[] setInitialBox(int position, int wordLength) {
         int[] initialBox = new int[2];
-        int limitRow;
-        int limitCol;
+        int limitRow = 0;
+        int limitCol = 0;
         switch (position) {
             case 0:
                 limitRow = wordSearchMatrix.length - 1;
-                limitCol = wordSearchMatrix[0].length - 1 - size;
+                limitCol = wordSearchMatrix[0].length - wordLength;
                 break;
             case 1:
-                limitRow = wordSearchMatrix.length - 1 - size;
+                limitRow = wordSearchMatrix.length - wordLength;
                 limitCol = wordSearchMatrix[0].length - 1;
                 break;
             case 2:
-                limitRow = wordSearchMatrix.length - 1 - size;
-                limitCol = wordSearchMatrix[0].length - 1 - size;
-                break;
-            default:
-                limitRow = wordSearchMatrix.length - 1;
-                limitCol = wordSearchMatrix[0].length - 1;
+                limitRow = wordSearchMatrix.length - wordLength;
+                limitCol = wordSearchMatrix[0].length - wordLength;
                 break;
         }
-        initialBox[0] = (int) (Math.random() * limitRow);
-        initialBox[1] = (int) (Math.random() * limitCol);
+        initialBox[0] = (int) (Math.round(Math.random() * limitRow));
+        initialBox[1] = (int) (Math.round(Math.random() * limitCol));
         return initialBox;
     }
 
@@ -191,7 +197,7 @@ public class WordSearchGenerator {
         boolean available = true;
         int row = initialBox[0];
         int column = initialBox[1];
-        int i, j, k;
+        int i;
         switch (position) {
             case 0:
                 i = 0;
@@ -200,10 +206,9 @@ public class WordSearchGenerator {
                         if (wordChar[i] != wordSearchMatrix[row][column]) {
                             available = false;
                         }
-                    } else {
-                        i++;
-                        column++;
                     }
+                    i++;
+                    column++;
                 }
                 break;
             case 1:
@@ -213,10 +218,9 @@ public class WordSearchGenerator {
                         if (wordChar[i] != wordSearchMatrix[row][column]) {
                             available = false;
                         }
-                    } else {
-                        i++;
-                        row++;
                     }
+                    i++;
+                    row++;
                 }
                 break;
             case 2:
@@ -226,11 +230,10 @@ public class WordSearchGenerator {
                         if (wordChar[i] != wordSearchMatrix[row][column]) {
                             available = false;
                         }
-                    } else {
-                        i++;
-                        row++;
-                        column++;
                     }
+                    i++;
+                    row++;
+                    column++;
                 }
                 break;
         }
