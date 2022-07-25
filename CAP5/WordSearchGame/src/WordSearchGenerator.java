@@ -78,6 +78,9 @@ public class WordSearchGenerator {
 
             if (checkAvailability(wordChar,initialBox,position)) {
                 System.out.println(word + " - " + position + " " + Arrays.toString(initialBox));
+                if (direction) {
+                    word = reverseWord(word);
+                }
                 selectedWords.add(word);
                 switch (position) {
                     case 0:
@@ -95,6 +98,11 @@ public class WordSearchGenerator {
             }
         }
         showMatrix(wordSearchMatrix);
+
+        for (String selectedWord : selectedWords) {
+            System.out.print(selectedWord);
+            System.out.println();
+        }
 
         System.out.println();
         for (boolean[] booleans : availabilityMatrix) {
@@ -130,7 +138,6 @@ public class WordSearchGenerator {
         do {
             selectedWord = wordsList[(int) (Math.round(Math.random() * 19))];
         } while (selectedWords.contains(selectedWord));
-
         return selectedWord;
     }
 
