@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -35,6 +34,7 @@ public class WordSearchGenerator {
     }
 
     public void generateWordSearchGame() {
+        int averageWordLength = 0;
         int size;
         String shape;
         int wordsQuan;
@@ -43,41 +43,48 @@ public class WordSearchGenerator {
         boolean direction;
         int[] initialBox;
         char[] wordChar;
+        int requiredLength = 0;
         selectedWords = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.print("Size of the larger side?: ");
-        size = scanner.nextInt();
+        for (String anWord : wordsList) {
+            averageWordLength += anWord.length();
+        }
+        averageWordLength /= wordsList.length;
         System.out.print("Square or Rectangular? (s) or (r): ");
         shape = scanner.next();
         System.out.print("How many words?: ");
         wordsQuan = scanner.nextInt();
+        size = (int) (Math.ceil(Math.sqrt((wordsQuan * averageWordLength) * 2)));
         wordSearchMatrix = generateRandomMatrix(size,shape);
         if (shape.equals("r")) {
+            size *= 1.3;
             availabilityMatrix = new boolean[size / 2][size];
         } else {
             availabilityMatrix = new boolean[size][size];
         }
         for (int i = 0; i < wordsQuan; i++) {
-
             do {
                 word = selectWord();
-            } while (word.length() > size);
-
-            position = (int) (Math.round(Math.random() * 2));
+                position = (int) (Math.round(Math.random() * 2));
+                switch (position){
+                    case 0:
+                        requiredLength = size;
+                        break;
+                    case 1, 2:
+                        requiredLength = size / 2;
+                        break;
+                }
+            } while (word.length() > requiredLength);
             direction = random.nextBoolean();
-
             if (direction) {
                 word = reverseWord(word);
             }
-
             wordChar = word.toCharArray();
             initialBox = setInitialBox(position,wordChar.length);
-
             if (checkAvailability(wordChar,initialBox,position)) {
-                System.out.println(word + " - " + position + " " + Arrays.toString(initialBox));
                 if (direction) {
                     word = reverseWord(word);
                 }
@@ -98,29 +105,16 @@ public class WordSearchGenerator {
             }
         }
         showMatrix(wordSearchMatrix);
-
         for (String selectedWord : selectedWords) {
             System.out.print(selectedWord);
             System.out.println();
         }
-
-        System.out.println();
-        for (boolean[] booleans : availabilityMatrix) {
-            for (boolean anBoolean : booleans) {
-                if (anBoolean) {
-                    System.out.printf("%3d",1);
-                } else {
-                    System.out.printf("%3d",0);
-                }
-            }
-            System.out.println();
-        }
-
     }
 
     public char[][] generateRandomMatrix(int size, String shape) {
         char[][] randomMatrix;
         if (shape.equals("r")) {
+            size *= 1.3;
             randomMatrix = new char[size / 2][size];
         } else {
             randomMatrix = new char[size][size];
