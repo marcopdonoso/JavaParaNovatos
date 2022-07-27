@@ -6,7 +6,6 @@ public class WordSearchGenerator {
     private final String[] wordsList;
     private char[][] wordSearchMatrix;
     private boolean[][] availabilityMatrix;
-    private char[][] solutionMatrix;
     private ArrayList<String> selectedWords;
 
     public WordSearchGenerator() {
